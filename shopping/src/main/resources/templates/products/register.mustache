@@ -1,0 +1,31 @@
+{{>layouts/header}}
+<form class = "container" action="/products/create" method="post">
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">상품 이름</label>
+    <input type="text" class="form-control" name="name">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">가격(원)</label>
+    <input type="number" class="form-control" name="price">
+</div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">수량</label>
+    <input type="number" class="form-control" name="quantity">
+</div>
+<select class="form-select" aria-label="CategorySelector" name="category">
+    <option selected value="아이패드">아이패드</option>
+    <option value="헤드셋">헤드셋</option>
+    <option value="노트북">노트북</option>
+    <option value="마우스">마우스</option>
+</select>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">상품 URL 등록</label>
+        <input type="text" class="form-control" name="image" placeholder="/images/파일이름.JPG">
+    </div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">제품 상세 설명</label>
+    <textarea class="form-control" rows="3" name="description"></textarea>
+</div>
+    <button type="submit" class="btn btn-primary">상품 등록</button>
+</form>
+{{>layouts/footer}}

@@ -1,0 +1,37 @@
+{{>layouts/header}}
+<h1>Your Wishlist</h1>
+<ul>
+    {{#wishlist}}
+    <li>
+        <p>{{product.name}}</p>
+        <p>{{product.price}}원</p>
+        <form action="/remove" method="post">
+            <input type="hidden" name="id" value="{{product.id}}" />
+            <button type="submit">Remove</button>
+        </form>
+    </li>
+    {{/wishlist}}
+</ul>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    결제(관련 안내 메시지만 출력)
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">결제 관련 메시지창</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>결제합니다. 주문지/배송지 정보 출력후 결제. 주문내역이나 주문/배송상태를 볼 수 있고 주문/배송상태를 선택한다면 주문 취소나 반품 버튼 사용 가능.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{>layouts/footer}}

@@ -1,0 +1,15 @@
+{{>layouts/header}}
+{{#product}}
+    <img src="{{image}}" class="img-thumbnail" alt="..." width="300" height="400">
+<ul class="list-group">
+    <li class="list-group-item">상품명 : {{name}}</li>
+    <li class="list-group-item">가격 : {{price}}원</li>
+    <li class="list-group-item">카테고리 : {{category}}</li>
+    <li class="list-group-item">수량 : {{quantity}}개</li>
+    <li class="list-group-item">상세설명 : {{description}}</li>
+</ul>
+
+<a href="/products/register" class="btn btn-primary">추가 등록하기</a>
+<a href="/products/{{id}}/delete" class="btn btn-warning">상품 삭제하기</a>
+{{/product}}
+{{>layouts/footer}}

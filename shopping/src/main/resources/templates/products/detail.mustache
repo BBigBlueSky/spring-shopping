@@ -1,0 +1,58 @@
+{{>layouts/header}}
+<style>
+    .button-col{
+        display: grid;
+        column-gap: 3px;
+        grid-template-columns: 1.2fr 1.2fr;
+        width:300px;
+    }
+    span{
+        background-color: #f6f4ee;
+        border: 1px solid #ededed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 5px;
+    }
+    ul.list-group{
+        width : 300px;
+    }
+</style>
+{{#product}}
+
+    <div class="all-container" style="display:flex;margin: 25px; flex-wrap : wrap;justify-content: center;align-items:center">
+        <div class="image-container" style=" center; margin:3px;">
+            <img src="{{image}}" class="img-thumbnail" alt="..." width="450" height="600">
+        </div>
+        <div class="des-container" style=";margin:3px;">
+            <ul class="list-group">
+                <li class="list-group-item">상품명 : {{name}}</li>
+                <li class="list-group-item">가격 : {{price}}원</li>
+                <li class="list-group-item">카테고리 : {{category}}</li>
+                <li class="list-group-item">수량 : {{quantity}}개</li>
+            </ul>
+            <form class = "container" action="/add" method="post">
+                <input type="hidden" name="id" value="{{id}}"></input>
+            <input type="hidden" class="form-control" name="image" value="{{image}}">
+            <input type="hidden" class="form-control" name="name" value="{{name}}">
+            <input type="hidden" class="form-control" name="price" value="{{price}}">
+                <input type="hidden" class="form-control" name="category" value="{{category}}">
+            <input type="hidden" class="form-control" name="description" value="{{description}}">
+            <input type="hidden" class="form-control" name="quantity" value="{{quantity}}">
+            <div class="button-col">
+                <button type="submit" class="btn btn-primary">위시리스트</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    </form>
+    <form class = "container" action="/wishlist" method="Get">
+        <button type="submit" class="btn btn-primary">장바구니 보기</button>
+    </form>
+    <hr>
+        <p style="text-align:center;font-size:30px;" >상세설명</p>
+    <hr>
+    <p style="font-size:20px;margin:25px;">{{description}}</p>
+{{/product}}
+{{>layouts/footer}}

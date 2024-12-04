@@ -1,0 +1,51 @@
+<div class="card m-2" id="comments-new">
+    <div class="card-body">
+        <form>
+            <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">닉네임</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="new-comment-nickname">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">댓글 내용</label>
+                <div class="col-sm-10">
+                    <textarea type ="text" class="form-control" rows="3" id="new-comment-body"></textarea>
+                </div>
+            </div>
+            {{#article}}
+                <input type="hidden" id="new-comment-article-id" value="{{id}}"></input>
+            {{/article}}
+            <button type="button" class="btn btn-primary" id="comment-create-btn">댓글작성</button>
+        </form>
+    </div>
+</div>
+<script>
+    {
+    const commentCreateBtn = document.querySelector("#comment-create-btn");//댓글 생성버튼 요소화
+        commentCreateBtn.addEventListener("click",function(){
+            const comment={//객체 리터럴 방식. 리터럴이란 변수를 선언하며 동시에 값을 지정해주는 방식
+                 nickname:document.querySelector("#new-comment-nickname").value,
+                 body:document.querySelector("#new-comment-body").value,
+                 articleId:document.querySelector("#new-comment-article-id").value
+            };
+           console.log(comment);
+           const url = "/api/articles/"+comment.articleId+"/comments";//commentapicontroller 에서 create url임. 즉 api를 통해 데이터를 받아와서 html에서 조합한다는 소리.
+            //근데 api/articles로 했을 때는 접속이 articles/api/articles/4/comments로 되고 /api/articles로 했을 떄는 api/articles/4/comments로 되는데 왜 이렇지?
+            //상대경로라 그럼. url은 디렉토리처럼 해석하는데 기본적으로 마지막 단어는 파일로 해석될 수 있기때문에 빼고 계산. 그래서 중략8080://articles/api/articles/중략 처럼 된것. 4가 빠지고.
+
+           fetch(url,{
+              method: "POST",
+              headers:{
+                   "Content-Type": "application/json"
+               },
+                body:JSON.stringify(comment)
+          }).then(response=>{
+              const mgs = (response.ok)?"댓글이 등록되었습니다":"댓글 등록에 실패했습니다";
+              alert(mgs);
+              window.location.reload(true);
+           })
+
+    });
+    }//자바 스크립트에는 객체를 만드는 3가지 방식 존재. 1.객체리터럴 2.생성자함수 3.Object.create()방식
+</script>

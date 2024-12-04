@@ -1,0 +1,20 @@
+{{>layouts/header}}
+<hr>
+{{#category}}
+    <p style="font-size:30px; text-align: center ">카테고리 : {{category}}</p>
+{{/category}}
+<hr>
+{{#productList}}
+
+    <div class="box">
+    <img src="{{image}}" class="img-thumbnail" alt="..." width="300" height="400" style="display: block; margin: 0 auto;">
+    <ul class="list-group">
+        <li class="list-group-item" style="text-align: center;"><a href="/products/detail/{{id}}">상품명 : {{name}}</a></li>
+        <li class="list-group-item" style="text-align: center;">가격 : {{price}}원</li>
+        <li class="list-group-item" style="text-align: center;">카테고리 : {{category}}</li>
+        <li class="list-group-item" style="text-align: center;">수량 : {{quantity}}개</li>
+    </ul>
+    </div>
+    <hr style="border : 2px solid black">
+{{/productList}}
+{{>layouts/footer}}
